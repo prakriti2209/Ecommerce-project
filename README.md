@@ -1,26 +1,22 @@
-E-commerce Backend System
+Ecommerce Backend — Microservices Architecture
 
-A microservices-based e-commerce backend built with Spring Boot.
+This project is a microservices-based e-commerce backend.
+It is divided into two independent services:
 
-Services
- **Auth Service** — User registration and login with JWT token generation
- **Product Service** — Admin can add/update/delete products; users can browse all products (role-based access)
- **Order Service** — Users can place and view their own orders
+This service itself is Auth Service — handles user registration and login.
+After successful login, a JWT token is generated.
+GitHub link: https://github.com/prakriti2209/Ecommerce-project
 
- Tech Stack
- Java, Spring Boot, Spring Security
- JWT Authentication- MySQL, Spring Data JPA, Hibernate
- REST APIs
- Postman (for testing)
+Product Service — handles product management.
+Admin can add, update, delete products.
+Users can view all products.
+Every request requires a valid JWT token in the Authorization header.
+GitHub link: https://github.com/prakriti2209/ProductService
 
- How to Run
-1. Clone the repository
-2. Set up MySQL and update `application.properties` with your DB credentials
-3. Run each service separately using `mvn spring-boot:run`
-4. Test APIs using Postman
+How these services work together:
+1. User registers and logs in via Auth Service on port 8077
+2. Auth Service returns a JWT token
+3. User sends that token in every Product Service request
+4. Product Service verifies the token and allows or blocks access
 
-API Endpoints (Auth Service)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /auth/register | Register new user |
-| POST | /auth/login | Login and get JWT token |
+Tech used: Java, Spring Boot, Spring Security, JWT, MySQL, Postman
